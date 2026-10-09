@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%235980a6'/%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-weight='600' font-size='40' text-anchor='middle' fill='%23ffffff'%3EN%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!--<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">-->
 <style>
 /* ===== EDIT COLORS HERE ===== */
 :root {
@@ -26,9 +26,9 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--page-bg); color: var(--text); font-family: "Geist", system-ui, sans-serif; font-size: 16px; line-height: 1.7; }
-h1, h2, h3 { font-family: "Geist", system-ui, sans-serif; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
-p { margin: 0; text-wrap: pretty; }
+body { margin: 0; background: var(--page-bg); color: var(--text); font-family: "Times New Roman", Times, serif; font-size: 16px; line-height: 1.7; }
+h1, h2, h3 { font-family: "Times New Roman", Times, serif; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
+p { margin: 0; text-align: justify; hyphens: auto; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -37,7 +37,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 /* Header */
 header { border-bottom: 1px solid var(--line); background: var(--page-bg); position: sticky; top: 0; z-index: 10; }
 header .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding-top: 16px; padding-bottom: 16px; }
-.brand { font-family: "Geist", system-ui, sans-serif; font-size: 20px; letter-spacing: -0.01em; font-weight: 600; color: var(--text); }
+.brand { font-family: "Times New Roman", Times, serif; font-size: 20px; letter-spacing: -0.01em; font-weight: 600; color: var(--text); }
 .brand:hover { text-decoration: none; }
 nav { display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 16px; }
 nav a { color: var(--muted); }
@@ -49,11 +49,10 @@ nav a:hover { color: var(--text); text-decoration: none; }
 .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .intro h1 { font-size: clamp(44px, 6vw, 64px); margin-bottom: 6px; }
 .role { font-size: 19px; color: var(--muted); margin-bottom: 28px; }
-.bio { display: grid; gap: 16px; max-width: 62ch; }
+.bio { display: grid; gap: 16px; }
 .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
-.links a { border: 1px solid var(--line); padding: 8px 16px; color: var(--text); font-size: 15px; font-weight: 500; }
-.links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
-
+.links a { background: var(--accent); border: 1px solid var(--accent); padding: 8px 16px; color: #ffffff; font-size: 15px; font-weight: 500; }
+.links a:hover { background: #2f5274; border-color: #2f5274; color: #ffffff; text-decoration: none; }
 /* Sections */
 section.block { padding: 72px 0; border-top: 1px solid var(--line); scroll-margin-top: 64px; }
 section.alt { background: var(--section-alt-bg); }
@@ -63,23 +62,25 @@ section.block h2 { font-size: 36px; margin-bottom: 32px; }
 .pubs { display: grid; }
 .pub { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid var(--line); }
 .pub:first-child { padding-top: 0; }
-.venue { font-family: "Geist", system-ui, sans-serif; font-size: 17px; font-weight: 600; color: var(--accent); line-height: 1.2; }
-.venue span { display: block; font-family: "Geist", system-ui, sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 4px; }
-.pub h3 { font-family: "Geist", system-ui, sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; }
+.venue { font-family: "Times New Roman", Times, serif; font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.2; }
+.venue span { display: block; font-family: "Times New Roman", Times, serif; font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 4px; }
+.pub h3 { font-family: "Times New Roman", Times, serif; font-size: 18px; font-weight: 600; line-height: 1.4; }
+.pub h3 a { color: var(--accent); }
+.pub h3 a:hover { color: #2f5274; text-decoration: underline; }
 .pub p { color: var(--muted); font-size: 15px; margin-top: 6px; }
 .badge { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 1px 8px; margin-left: 8px; vertical-align: 2px; }
 
 /* Skills */
 .skills { display: grid; }
 .skill { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 6px 32px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-.skill h3 { font-family: "Geist", system-ui, sans-serif; font-size: 16px; font-weight: 600; }
+.skill h3 { font-family: "Times New Roman", Times, serif; font-size: 16px; font-weight: 600; }
 .skill p { color: var(--muted); font-size: 16px; }
 
 /* Education */
 .edu { display: grid; gap: 28px; }
 .edu-item { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 6px 32px; }
 .edu-item .years { color: var(--muted); font-size: 16px; }
-.edu-item h3 { font-family: "Geist", system-ui, sans-serif; font-size: 18px; font-weight: 600; }
+.edu-item h3 { font-family: "Times New Roman", Times, serif; font-size: 18px; font-weight: 600; }
 .edu-item p { color: var(--muted); font-size: 16px; }
 
 footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 14px; }
@@ -90,6 +91,8 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .photo { max-width: 280px; }
   .pub, .skill, .edu-item { grid-template-columns: 1fr; }
 }
+.list { margin: 0; padding-left: 18px; display: grid; gap: 8px; color: var(--muted); font-size: 16px; }
+.list li { text-align: justify; }
 </style>
 </head>
 <body>
@@ -102,6 +105,9 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       <a href="#publications">Publications</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#Extracurricular">Extra-Curricular</a>
     </nav>
   </div>
 </header>
@@ -116,10 +122,10 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       </div>
       <div>
         <h1>Nilufer Tamatgar</h1>
-        <p class="role">AI Researcher, A*STAR · Singapore</p>
+        <p class="role">AI Researcher</p>
         <div class="bio">
-          <p>I am an AI researcher and engineer at A*STAR's Institute of Advanced Intelligence and Computing. I develop and fine-tune generative models, including transformer, diffusion and graph-based architectures, and I use supervised fine-tuning, preference optimization and ranking-based objectives to make them more controllable and reliable.</p>
-          <p>I apply this work to AI for drug discovery. The central problem is learning from very few labelled examples: when only a handful of measurements exist, how do you make a model's top-ranked outputs more likely to be right? My methods are evaluated on real experimental data, and my work has been presented at KDD and at ICLR and NeurIPS workshops.</p>
+          <p>As an AI Researcher & Engineer, I worked at A*STAR (CFAR), specializing in deep generative models and machine learning for drug discovery. My research focused on advancing Transformer, Diffusion, and Graph architectures through supervised fine-tuning, preference optimization, and ranking objectives, specifically addressing the challenge of learning from sparse experimental measurements to maximize the precision of a model's top-ranked predictions. Evaluated on real-world experimental data, this work has been presented at premier AI Conferences.</p>
+          <p>Earlier in my career, I built a strong engineering foundation centered on full-stack application development, real-time machine learning model deployment, and physical-layer systems including IoT architectures, Wireless Sensor Networks, and Wideband Wireless Communications.</p>
         </div>
         <div class="links">
           <a href="https://scholar.google.com/citations?hl=en&amp;user=itp-GMwAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
@@ -136,33 +142,33 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
         <div class="pub">
           <div class="venue">KDD 2026<span>AI4Sciences</span></div>
           <div>
-            <h3>From Structure to Function: Preference Alignment for Function-aware Protein Inverse Folding <span class="badge">Poster</span></h3>
+            <h3><a href="https://dl.acm.org/doi/10.1145/3770855.3818896" target="_blank" rel="noopener">From Structure to Function: Preference Alignment for Function-aware Protein Inverse Folding</a></h3>
             <p>Co-first author. Efficient preference learning for aligning inverse folding models with functional measurements.</p>
           </div>
         </div>
         <div class="pub">
           <div class="venue">ICLR 2026<span>GEM Workshop</span></div>
           <div>
-            <h3>From Structure to Function: Preference Alignment for Function-Aware Protein Inverse Folding</h3>
+            <h3><a href="https://openreview.net/forum?id=sTEolR8Nn7" target="_blank" rel="noopener">From Structure to Function: Preference Alignment for Function-Aware Protein Inverse Folding</a></h3>
           </div>
         </div>
         <div class="pub">
           <div class="venue">NeurIPS 2026<span>AI4DD Workshop</span></div>
           <div>
-            <h3>Precision Inverse Folding: From Low-Order Mutant Measurements to Higher-Order Variant Prioritization</h3>
+            <h3>Precision Inverse Folding: From Low-Order Mutant Measurements to Higher-Order Variant Prioritization <span class="badge">Accepted</span></h3>
             <p>Uses low-order mutant measurements to prioritize higher-order variants and raise the success rate of top-ranked candidates.</p>
           </div>
         </div>
         <div class="pub">
           <div class="venue">ACM DL<span>2024</span></div>
           <div>
-            <h3>Deployment of Random Forest Algorithm for prediction of ammonia in river water</h3>
+            <h3><a href="https://dl.acm.org/doi/10.1145/3651781.3651811" target="_blank" rel="noopener">Deployment of Random Forest Algorithm for prediction of ammonia in river water</a></h3>
           </div>
         </div>
         <div class="pub">
           <div class="venue">IEEE Xplore<span>2023</span></div>
           <div>
-            <h3>Machine Learning Approach for Prediction of Ammonia in Freshwater Bodies</h3>
+            <h3><a href="https://ieeexplore.ieee.org/abstract/document/10331860" target="_blank" rel="noopener">Machine Learning Approach for Prediction of Ammonia in Freshwater Bodies</a></h3>
           </div>
         </div>
       </div>
@@ -175,7 +181,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       <div class="skills">
         <div class="skill">
           <h3>Generative AI and LLMs</h3>
-          <p>Supervised fine-tuning, Preference optimization, Diffusion models, Autoregressive transformers, LangChain, RAG (familiar)</p>
+          <p>Supervised fine-tuning, Preference optimization, Diffusion models, Autoregressive transformers, LangChain, RAG</p>
         </div>
         <div class="skill">
           <h3>Model development</h3>
@@ -205,7 +211,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
           <div class="years">2024 to 2025</div>
           <div>
             <h3>MSc, Computer and Communication Engineering</h3>
-            <p>Nanyang Technological University. EEE Excellence Award.</p>
+            <p>Nanyang Technological University.</p>
           </div>
         </div>
         <div class="edu-item">
@@ -219,7 +225,67 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
     </div>
   </section>
 </main>
+<section class="block" id="achievements">
+    <div class="wrap">
+      <h2>Achievements</h2>
+      <div class="edu">
+        <div>
+          <h3>EEE Excellence Award</h3>
+          <p>School of Electrical and Electronic Engineering, Nanyang Technological University (NTU), Singapore. Recognised for Academic Excellence, Research contributions, Leadership and community engagement during the MSc programme.</p>
+        </div>
+        <div>
+          <h3>Academic Excellence Award</h3>
+          <p>Awarded for securing first place in Pre-University examinations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="block alt" id="leadership">
+    <div class="wrap">
+      <h2>Leadership</h2>
+      <div class="edu">
+        <div class="edu-item">
+          <div class="years">2024 to 2025</div>
+          <div>
+            <h3>Director of Sports, Recreation and Well-being</h3>
+            <p>Graduate Students, School of EEE, NTU Singapore.</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="years">2015 to 2022</div>
+          <div>
+            <h3>Mentor, Junior Youth Spiritual Empowerment Program</h3>
+            <p>Guided a group of 20 children in Udupi and Satara districts, India.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="Extracurricular">
+    <div class="wrap">
+      <h2>Extra-Curricular</h2>
+      <p class="role" style="margin-bottom: 24px;">Sports · Dancing · Reading</p>
+      <div class="skills">
+        <div class="skill">
+          <h3>Sports</h3>
+          <div style="display: grid; gap: 10px;">
+            <p><strong>Badminton, 2024 to 2026.</strong> First prize in tournaments organised by the Graduate Academy of Nanyang Technological University, the Indian Society in Singapore and the Singapore Tamil Society.</p>
+            <p><strong>Manipal Marathon, (2019,2020).</strong> First prize in Women's 5K Category.</p>
+          </div>
+        </div>
+        <div class="skill">
+          <h3>Cultural</h3>
+          <p>Performed in multiple cultural programmes at School and University.</p>
+        </div>
+        <div class="skill">
+          <h3>Interests</h3>
+          <p>Passionate about wildlife and natural ecosystems, and an avid reader across psychology, philosophy, historical non-fiction and fiction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 <footer>
   <div class="wrap">
     <span>© 2026 Nilufer Tamatgar</span>
