@@ -44,9 +44,9 @@ nav a { color: var(--muted); }
 nav a:hover { color: var(--text); text-decoration: none; }
 
 /* Intro */
-.intro { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 56px; align-items: start; padding: 72px 0 80px; }
-.photo { aspect-ratio: 4 / 5; background: var(--section-alt-bg); border: 1px dashed #c3c8ce; display: grid; place-items: center; color: var(--muted); font-size: 14px; overflow: hidden; }
-.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.intro { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 56px; align-items: start; padding: 72px 0 80px; }
+.photo { width: 240px; max-width: 100%; aspect-ratio: 1 / 1; border-radius: 50%; background: var(--section-alt-bg); display: grid; place-items: center; color: var(--muted); font-size: 14px; overflow: hidden; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
 .intro h1 { font-size: clamp(44px, 6vw, 64px); margin-bottom: 6px; }
 .role { font-size: 19px; color: var(--muted); margin-bottom: 28px; }
 .bio { display: grid; gap: 16px; }
