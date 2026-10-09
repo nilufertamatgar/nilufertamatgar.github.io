@@ -8,513 +8,224 @@
 <meta property="og:title" content="Nilufer Tamatgar | AI Researcher">
 <meta property="og:description" content="AI Researcher - building and fine-tuning Generative models, with applications in drug discovery.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%235980a6'/%3E%3Ctext x='32' y='46' font-family='Arial Narrow,sans-serif' font-weight='600' font-size='40' text-anchor='middle' fill='%23f2f2f3'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%235980a6'/%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-weight='600' font-size='40' text-anchor='middle' fill='%23ffffff'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Industry — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap');
-
+/* ===== EDIT COLORS HERE ===== */
 :root {
-  --color-bg: #f2f2f3;
-  --color-surface: #e9e9ea;
-  --color-text: #1d1f20;
-  --color-accent: #5980a6;
-  --color-accent-2: #728fab;
-  --color-divider: color-mix(in srgb, #1d1f20 16%, transparent);
-
-  /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
-     same step of any role matches the others in visual value. */
-  --color-neutral-100: #f5f5f8;
-  --color-neutral-200: #e7e7ea;
-  --color-neutral-300: #d4d4d7;
-  --color-neutral-400: #b7b7ba;
-  --color-neutral-500: #98989b;
-  --color-neutral-600: #7a7a7d;
-  --color-neutral-700: #5d5d60;
-  --color-neutral-800: #424244;
-  --color-neutral-900: #2b2b2d;
-
-  --color-accent-100: #eef6ff;
-  --color-accent-200: #d6ebff;
-  --color-accent-300: #b5d9fd;
-  --color-accent-400: #94bce3;
-  --color-accent-500: #749dc4;
-  --color-accent-600: #597ea3;
-  --color-accent-700: #416180;
-  --color-accent-800: #2c455d;
-  --color-accent-900: #1d2d3d;
-
-  --color-accent-2-100: #eef6ff;
-  --color-accent-2-200: #d6ebff;
-  --color-accent-2-300: #bdd8f2;
-  --color-accent-2-400: #9ebbd8;
-  --color-accent-2-500: #7e9cb8;
-  --color-accent-2-600: #627d98;
-  --color-accent-2-700: #486077;
-  --color-accent-2-800: #314457;
-  --color-accent-2-900: #1f2d3a;
-
-  --font-heading: "Barlow Condensed", system-ui, sans-serif;
-  --font-heading-weight: 600;
-  --font-body: "Barlow", system-ui, sans-serif;
-
-  --space-1: 3.4px;
-  --space-2: 6.8px;
-  --space-3: 10.2px;
-  --space-4: 13.6px;
-  --space-6: 20.4px;
-  --space-8: 27.2px;
-
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 7px;
-
-  /* Elevation — derived from the ground: soft ink-tinted shadows on a
-     light theme, a hairline edge + ambient darkness on a dark one. */
-  --shadow-sm: 0 1px 2px color-mix(in srgb, #2b2b2d 14%, transparent);
-  --shadow-md: 0 3px 10px color-mix(in srgb, #2b2b2d 16%, transparent);
-  --shadow-lg: 0 12px 32px color-mix(in srgb, #2b2b2d 22%, transparent);
+  --page-bg: #ffffff;       /* page background */
+  --section-alt-bg: #f5f6f8;/* background of alternating sections */
+  --text: #1d1f20;          /* main text */
+  --muted: #5d6166;         /* secondary text */
+  --accent: #3f6890;        /* links, highlights */
+  --line: #e3e5e8;          /* thin divider lines */
 }
-
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-}
-h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
-
-.blueprint {
-  position: relative;
-  border: 1px solid var(--color-divider);
-  border-radius: 0;
-}
-/* The overlay image treatments (halftone, duotone) clip their overlay
-   (overflow:hidden); a blueprint wrapper draws its registration marks
-   outside the box, so when both classes share a wrapper the frame must
-   win. */
-.blueprint.halftone, .blueprint.plate, .blueprint.duotone { overflow: visible; }
-.blueprint > .corner {
-  position: absolute; width: 11px; height: 11px;
-  color: color-mix(in srgb, var(--color-text) 55%, transparent);
-}
-.blueprint > .corner::before, .blueprint > .corner::after {
-  content: ""; position: absolute; background: currentColor;
-}
-.blueprint > .corner::before { left: 5px; top: 0; width: 1px; height: 100%; }
-.blueprint > .corner::after  { top: 5px; left: 0; width: 100%; height: 1px; }
-.blueprint > .corner.tl { top: -6px; left: -6px; }
-.blueprint > .corner.tr { top: -6px; right: -6px; }
-.blueprint > .corner.bl { bottom: -6px; left: -6px; }
-.blueprint > .corner.br { bottom: -6px; right: -6px; }
-
-.duotone{position:relative;overflow:hidden}
-.duotone::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:var(--color-accent);mix-blend-mode:color}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   Components — built with the tokens above. Plain CSS
-   on plain HTML: no JavaScript, no build step. Each class is documented in
-   readme.md and demonstrated in foundations/ and components/.
-   ══════════════════════════════════════════════════════════════════════ */
+/* ============================ */
 
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
-}
-h1 { font-size: 42px; }
-h2 { font-size: 32px; }
-h3 { font-size: 25px; }
-h4 { font-size: 20px; }
-h5 { font-size: 16px; }
-h6 { font-size: 13px; }
-h6 { letter-spacing: 0.08em; text-transform: uppercase; }
-p { margin: 0 0 var(--space-3); }
-a { color: var(--color-accent); text-underline-offset: 3px; }
-img { display: block; max-width: 100%; }
-figure { margin: 0; }
-figcaption {
-  font-size: 11px; margin-top: var(--space-1);
-  color: color-mix(in srgb, var(--color-text) 55%, transparent);
-}
-.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
-:focus { outline: none; }
-:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
-
-/* — rules — */
-.hr {
-  height: 1px; border: 0; margin: var(--space-4) 0;
-  background: var(--color-divider);
-}
-
-/* — buttons — */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  cursor: pointer; text-decoration: none;
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 14px; line-height: 1.2; color: var(--color-text); /* matches the .input's 14px —
-     the pair sits side by side in sign-up rows */
-  background: transparent; border: 1px solid transparent;
-  padding: var(--space-2) calc(var(--space-3) * 1.2);
-  border-radius: var(--radius-md);
-}
-.btn svg { display: block; }
-.btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.btn-primary { background: var(--color-accent); color: var(--color-bg); }
-.btn-primary:hover { background: var(--color-accent-600); }
-.btn-primary:active { background: var(--color-accent-700); }
-.btn-secondary { border-color: var(--color-divider); }
-.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
-.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
-.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
-.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
-.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
-.btn-icon { width: 36px; height: 36px; padding: 0; }
-.btn-block { width: 100%; margin-top: var(--space-2); }
-
-/* — forms — */
-.field > label {
-  display: block; font-size: 12px; margin-bottom: 5px;
-  color: color-mix(in srgb, var(--color-text) 70%, transparent);
-}
-.input {
-  width: 100%; min-height: 36px; padding: 6px 10px; font: inherit;
-  font-size: 14px; color: var(--color-text); caret-color: var(--color-accent);
-  background: var(--color-surface);
-  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
-}
-.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
-.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
-textarea.input { min-height: 90px; resize: vertical; }
-.radio { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
-.radio input, .seg-opt input {
-  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
-}
-.radio .dot {
-  width: 16px; height: 16px; flex: none; border-radius: 50%;
-  border: 1.5px solid var(--color-divider);
-}
-.radio:hover .dot { border-color: var(--color-accent); }
-.radio input:checked + .dot {
-  border-color: var(--color-accent); background: var(--color-accent);
-  box-shadow: inset 0 0 0 4px var(--color-bg);
-}
-.radio input:focus-visible + .dot { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-.seg {
-  display: inline-flex; overflow: hidden;
-  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
-}
-.seg-opt {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 12px; font-size: 13px; cursor: pointer;
-}
-.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
-.seg-opt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
-.seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
-.seg-opt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
-
-/* — cards — */
-.card {
-  display: flex; flex-direction: column; gap: var(--space-2);
-  padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-surface);
-}
-.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
-.card-title {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 17px; line-height: 1.2;
-}
-.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
-.card-meta {
-  display: flex; align-items: center; gap: 6px; font-size: 11px;
-  color: color-mix(in srgb, var(--color-text) 50%, transparent);
-}
-.elev-sm { box-shadow: var(--shadow-sm); }
-.elev-md { box-shadow: var(--shadow-md); }
-.elev-lg { box-shadow: var(--shadow-lg); }
-
-/* — tags — */
-.tag {
-  display: inline-flex; align-items: center; font-size: 11px;
-  letter-spacing: 0.02em; padding: 3px 10px;
-  border-radius: calc(var(--radius-md) * 0.75);
-}
-.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
-.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
-.tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
-.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
-
-/* — navigation — */
-.nav {
-  display: flex; align-items: center; gap: var(--space-4);
-  padding: var(--space-3) var(--space-4);
-  border-bottom: none;
-}
-.nav-brand {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 18px; margin-right: auto;
-}
-.nav a { color: inherit; text-decoration: none; font-size: 14px; }
-.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
-
-/* — tables — */
-.table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.table th {
-  text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-text) 60%, transparent);
-  padding: var(--space-2); border-bottom: 1px solid var(--color-divider);
-}
-.table td {
-  padding: var(--space-2);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
-}
-.table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 4%, transparent); }
-
-/* — dialog — */
-.dialog-backdrop {
-  position: fixed; inset: 0; display: grid; place-items: center;
-  padding: var(--space-4);
-  background: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
-}
-.dialog {
-  width: min(440px, 100%); display: flex; flex-direction: column; gap: var(--space-3);
-  padding: var(--space-4); border-radius: var(--radius-lg);
-  background: var(--color-surface); box-shadow: var(--shadow-lg);
-}
-.dialog-title {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 20px;
-}
-.dialog-body { font-size: 14px; opacity: 0.85; }
-.dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
-
-/* — blueprint frame: components are wireframe objects (see .blueprint
-     and .corner above) — square, transparent, hairline-bordered — */
-.card, .btn, .input, .tag, .seg, .dialog { border-radius: 0; }
-.card, .dialog { background: transparent; border: 1px solid var(--color-divider); }
-.btn { border: 1px solid var(--color-divider); }
-.btn-primary { border-color: var(--color-accent); }
-.btn-ghost { border-color: transparent; }
-
-
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--color-bg); }
-a { color: var(--color-accent-700); }
-a:hover { color: var(--color-accent-900); }
-#top a:hover { color: var(--color-bg) !important; }
-#top a[data-dark-btn]:hover { background: var(--color-accent-800); }
+body { margin: 0; background: var(--page-bg); color: var(--text); font-family: "Geist", system-ui, sans-serif; font-size: 16px; line-height: 1.7; }
+h1, h2, h3 { font-family: "Geist", system-ui, sans-serif; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
+p { margin: 0; text-wrap: pretty; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+header { border-bottom: 1px solid var(--line); background: var(--page-bg); position: sticky; top: 0; z-index: 10; }
+header .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding-top: 16px; padding-bottom: 16px; }
+.brand { font-family: "Geist", system-ui, sans-serif; font-size: 20px; letter-spacing: -0.01em; font-weight: 600; color: var(--text); }
+.brand:hover { text-decoration: none; }
+nav { display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 16px; }
+nav a { color: var(--muted); }
+nav a:hover { color: var(--text); text-decoration: none; }
+
+/* Intro */
+.intro { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 56px; align-items: start; padding: 72px 0 80px; }
+.photo { aspect-ratio: 4 / 5; background: var(--section-alt-bg); border: 1px dashed #c3c8ce; display: grid; place-items: center; color: var(--muted); font-size: 14px; overflow: hidden; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.intro h1 { font-size: clamp(44px, 6vw, 64px); margin-bottom: 6px; }
+.role { font-size: 19px; color: var(--muted); margin-bottom: 28px; }
+.bio { display: grid; gap: 16px; max-width: 62ch; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.links a { border: 1px solid var(--line); padding: 8px 16px; color: var(--text); font-size: 15px; font-weight: 500; }
+.links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+/* Sections */
+section.block { padding: 72px 0; border-top: 1px solid var(--line); scroll-margin-top: 64px; }
+section.alt { background: var(--section-alt-bg); }
+section.block h2 { font-size: 36px; margin-bottom: 32px; }
+
+/* Publications */
+.pubs { display: grid; }
+.pub { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.pub:first-child { padding-top: 0; }
+.venue { font-family: "Geist", system-ui, sans-serif; font-size: 17px; font-weight: 600; color: var(--accent); line-height: 1.2; }
+.venue span { display: block; font-family: "Geist", system-ui, sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 4px; }
+.pub h3 { font-family: "Geist", system-ui, sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; }
+.pub p { color: var(--muted); font-size: 15px; margin-top: 6px; }
+.badge { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 1px 8px; margin-left: 8px; vertical-align: 2px; }
+
+/* Skills */
+.skills { display: grid; }
+.skill { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 6px 32px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.skill h3 { font-family: "Geist", system-ui, sans-serif; font-size: 16px; font-weight: 600; }
+.skill p { color: var(--muted); font-size: 16px; }
+
+/* Education */
+.edu { display: grid; gap: 28px; }
+.edu-item { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 6px 32px; }
+.edu-item .years { color: var(--muted); font-size: 16px; }
+.edu-item h3 { font-family: "Geist", system-ui, sans-serif; font-size: 18px; font-weight: 600; }
+.edu-item p { color: var(--muted); font-size: 16px; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+@media (max-width: 760px) {
+  .intro { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; }
+  .photo { max-width: 280px; }
+  .pub, .skill, .edu-item { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
-<div style="min-height: 100vh; display: flex; flex-direction: column;">
 
-  <header style="position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-divider);">
-    <nav class="nav" style="max-width: 1120px; margin: 0 auto; padding: 12px 24px; flex-wrap: wrap; gap: 4px 20px;">
-      <a href="#top" class="nav-brand" style="font-size: 20px; letter-spacing: 0.02em; text-transform: uppercase; display: flex; align-items: center; gap: 10px;">
-        <span style="display: inline-grid; place-items: center; width: 28px; height: 28px; background: var(--color-accent); color: var(--color-bg); font-size: 18px;">N</span>
-        <span>Nilufer Tamatgar</span>
-      </a>
+<header>
+  <div class="wrap">
+    <a href="#" class="brand">Nilufer Tamatgar</a>
+    <nav>
       <a href="#about">About</a>
       <a href="#publications">Publications</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <section id="top" data-screen-label="Hero" style="background-color: var(--color-accent-900); background-image: linear-gradient(var(--color-accent-800) 1px, transparent 1px), linear-gradient(90deg, var(--color-accent-800) 1px, transparent 1px); background-size: 48px 48px; background-position: -1px -1px; color: var(--color-bg);">
-    <div style="max-width: 1120px; margin: 0 auto; padding: clamp(48px, 9vw, 112px) 24px clamp(40px, 6vw, 72px); display: grid; gap: 36px;">
-      <h1 style="margin: 0; font-size: clamp(56px, 12vw, 148px); line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; color: var(--color-bg); text-wrap: balance;">Nilufer<br><span style="color: var(--color-accent-400);">Tamatgar</span></h1>
-      <p style="margin: 0; max-width: 30ch; font-family: var(--font-heading); font-weight: 400; font-size: clamp(22px, 3vw, 32px); line-height: 1.2; color: var(--color-accent-200); text-wrap: pretty;">AI Researcher developing and fine-tuning Generative models to solve complex problems across Scientific and Engineering domains.</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); border-top: 1px solid var(--color-accent-700); margin-top: 8px;">
-        <div style="padding: 18px 24px 4px 0; display: grid; gap: 4px;">
-          <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-400);">Focus</span>
-          <span style="font-size: 16px; color: var(--color-accent-100);">AI engineering, AI for science, LLM fine-tuning, Generative models</span>
+<main>
+  <div class="wrap">
+    <div class="intro" id="about">
+      <!-- PHOTO: upload your photo to the repo as "photo.jpg" (same folder as this file). Until then a placeholder shows. -->
+      <div class="photo">
+        <img src="photo.jpg" alt="Nilufer Tamatgar" onerror="this.remove()">
+        <span>Photo</span>
+      </div>
+      <div>
+        <h1>Nilufer Tamatgar</h1>
+        <p class="role">AI Researcher, A*STAR · Singapore</p>
+        <div class="bio">
+          <p>I am an AI researcher and engineer at A*STAR's Institute of Advanced Intelligence and Computing. I develop and fine-tune generative models, including transformer, diffusion and graph-based architectures, and I use supervised fine-tuning, preference optimization and ranking-based objectives to make them more controllable and reliable.</p>
+          <p>I apply this work to AI for drug discovery. The central problem is learning from very few labelled examples: when only a handful of measurements exist, how do you make a model's top-ranked outputs more likely to be right? My methods are evaluated on real experimental data, and my work has been presented at KDD and at ICLR and NeurIPS workshops.</p>
         </div>
-        <div style="padding: 18px 24px 4px 0; display: grid; gap: 4px;">
-          <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-400);">Based in</span>
-          <span style="font-size: 16px; color: var(--color-accent-100);">Singapore</span>
-        </div>
-        <div style="padding: 18px 0 4px; display: grid; gap: 4px;">
-          <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-400);">Elsewhere</span>
-          <div style="display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 16px;">
-            <a href="https://www.linkedin.com/in/nilufer-tamatgar-8a2251196" target="_blank" rel="noopener" style="color: var(--color-accent-100);">LinkedIn</a>
-            <a href="https://scholar.google.com/citations?hl=en&amp;user=itp-GMwAAAAJ" target="_blank" rel="noopener" style="color: var(--color-accent-100);">Google Scholar</a>
-            <a href="https://github.com/nilufertamatgar" target="_blank" rel="noopener" style="color: var(--color-accent-100);">GitHub</a>
-          </div>
+        <div class="links">
+          <a href="https://scholar.google.com/citations?hl=en&amp;user=itp-GMwAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="https://www.linkedin.com/in/nilufer-tamatgar-8a2251196" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-        <a href="#publications" class="btn btn-primary blueprint" style="font-size: 16px; padding: 10px 18px; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; color: var(--color-bg);"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>View publications</a>
-        <a href="https://scholar.google.com/citations?hl=en&amp;user=itp-GMwAAAAJ" target="_blank" rel="noopener" class="btn blueprint" data-dark-btn="" style="font-size: 16px; padding: 10px 18px; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; color: var(--color-accent-100); border-color: var(--color-accent-600);"><i class="corner tl" style="color: var(--color-accent-400);"></i><i class="corner tr" style="color: var(--color-accent-400);"></i><i class="corner bl" style="color: var(--color-accent-400);"></i><i class="corner br" style="color: var(--color-accent-400);"></i>Google Scholar</a>
+    </div>
+  </div>
+
+  <section class="block alt" id="publications">
+    <div class="wrap">
+      <h2>Publications</h2>
+      <div class="pubs">
+        <div class="pub">
+          <div class="venue">KDD 2026<span>AI4Sciences</span></div>
+          <div>
+            <h3>From Structure to Function: Preference Alignment for Function-aware Protein Inverse Folding <span class="badge">Poster</span></h3>
+            <p>Co-first author. Efficient preference learning for aligning inverse folding models with functional measurements.</p>
+          </div>
+        </div>
+        <div class="pub">
+          <div class="venue">ICLR 2026<span>GEM Workshop</span></div>
+          <div>
+            <h3>From Structure to Function: Preference Alignment for Function-Aware Protein Inverse Folding</h3>
+          </div>
+        </div>
+        <div class="pub">
+          <div class="venue">NeurIPS 2026<span>AI4DD Workshop</span></div>
+          <div>
+            <h3>Precision Inverse Folding: From Low-Order Mutant Measurements to Higher-Order Variant Prioritization</h3>
+            <p>Uses low-order mutant measurements to prioritize higher-order variants and raise the success rate of top-ranked candidates.</p>
+          </div>
+        </div>
+        <div class="pub">
+          <div class="venue">ACM DL<span>2024</span></div>
+          <div>
+            <h3>Deployment of Random Forest Algorithm for prediction of ammonia in river water</h3>
+          </div>
+        </div>
+        <div class="pub">
+          <div class="venue">IEEE Xplore<span>2023</span></div>
+          <div>
+            <h3>Machine Learning Approach for Prediction of Ammonia in Freshwater Bodies</h3>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <main style="max-width: 1120px; width: 100%; margin: 0 auto; padding: 0 24px; display: grid;">
-
-    <section id="about" data-screen-label="About" style="padding: 72px 0 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 24px 48px; border-bottom: 1px solid var(--color-divider); scroll-margin-top: 60px;">
-      <div style="display: grid; align-content: start; gap: 6px;">
-        <span style="font-family: var(--font-heading); font-size: 64px; line-height: 0.9; color: var(--color-accent);">01</span>
-        <h2 style="margin: 0; font-size: 36px; text-transform: uppercase;">About</h2>
-      </div>
-      <div style="grid-column: span 2; min-width: 0; display: grid; gap: 4px; font-size: 17px; line-height: 1.65;">
-        <p style="max-width: 65ch; text-wrap: pretty;">I am an AI researcher and engineer at A*STAR's Institute of Advanced Intelligence and Computing. I develop and fine-tune generative models, including transformer, diffusion and graph-based architectures, and I use supervised fine-tuning, preference optimization and ranking-based objectives to make them more controllable and reliable.</p>
-        <p style="max-width: 65ch; text-wrap: pretty;">I apply this work to AI for drug discovery. The central problem is learning from very few labelled examples: when only a handful of measurements exist, how do you make a model's top-ranked outputs more likely to be right? My methods are evaluated on real experimental data, and my work has been presented at KDD and at ICLR and NeurIPS workshops.</p>
-      </div>
-    </section>
-
-    <section id="publications" data-screen-label="Publications" style="padding: 72px 0 64px; display: grid; gap: 36px; border-bottom: 1px solid var(--color-divider); scroll-margin-top: 60px;">
-      <div style="display: flex; align-items: end; gap: 20px; flex-wrap: wrap;">
-        <span style="font-family: var(--font-heading); font-size: 64px; line-height: 0.9; color: var(--color-accent);">02</span>
-        <h2 style="margin: 0; font-size: 36px; text-transform: uppercase;">Publications</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 28px;">
-        <article class="card blueprint" style="padding: 22px; gap: 12px; background: var(--color-accent-100); border-color: var(--color-accent-400);">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div style="display: flex; justify-content: space-between; align-items: start; gap: 12px;">
-            <div style="display: grid;">
-              <span style="font-family: var(--font-heading); font-weight: 600; font-size: 28px; line-height: 1; color: var(--color-accent-700);">KDD 2026</span>
-              <span class="card-kicker" style="color: var(--color-accent-700); font-size: 11px; margin-top: 4px;">AI4Sciences</span>
-            </div>
-            <span class="tag" style="background: var(--color-accent); color: var(--color-bg); text-transform: uppercase; letter-spacing: 0.08em;">poster</span>
-          </div>
-          <h3 class="card-title" style="font-size: 21px; margin: 0;">From Structure to Function: Preference Alignment for Function-aware Protein Inverse Folding</h3>
-          <p class="card-body" style="font-size: 14px; opacity: 1; color: var(--color-neutral-800);">Co-first author. Efficient preference learning for aligning inverse folding models with functional measurements.</p>
-        </article>
-        <article class="card blueprint" style="padding: 22px; gap: 12px;">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div style="display: grid;">
-            <span style="font-family: var(--font-heading); font-weight: 600; font-size: 28px; line-height: 1; color: var(--color-accent-700);">ICLR 2026</span>
-            <span class="card-kicker" style="color: var(--color-accent-700); font-size: 11px; margin-top: 4px;">GEM Workshop</span>
-          </div>
-          <h3 class="card-title" style="font-size: 21px; margin: 0;">From Structure to Function: Preference Alignment for Function-Aware Protein Inverse Folding</h3>
-        </article>
-        <article class="card blueprint" style="padding: 22px; gap: 12px;">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div style="display: grid;">
-            <span style="font-family: var(--font-heading); font-weight: 600; font-size: 28px; line-height: 1; color: var(--color-accent-700);">NeurIPS 2026</span>
-            <span class="card-kicker" style="color: var(--color-accent-700); font-size: 11px; margin-top: 4px;">AI4DD Workshop</span>
-          </div>
-          <h3 class="card-title" style="font-size: 21px; margin: 0;">Precision Inverse Folding: From Low-Order Mutant Measurements to Higher-Order Variant Prioritization</h3>
-          <p class="card-body" style="font-size: 14px; opacity: 1; color: var(--color-neutral-800);">Uses low-order mutant measurements to prioritize higher-order variants and raise the success rate of top-ranked candidates.</p>
-        </article>
-        <article class="card blueprint" style="padding: 22px; gap: 12px;">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div style="display: grid;">
-            <span style="font-family: var(--font-heading); font-weight: 600; font-size: 28px; line-height: 1; color: var(--color-neutral-700);">ACM DL</span>
-            <span class="card-kicker" style="color: var(--color-neutral-700); font-size: 11px; margin-top: 4px;">2024</span>
-          </div>
-          <h3 class="card-title" style="font-size: 21px; margin: 0;">Deployment of Random Forest Algorithm for prediction of ammonia in river water</h3>
-        </article>
-        <article class="card blueprint" style="padding: 22px; gap: 12px;">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div style="display: grid;">
-            <span style="font-family: var(--font-heading); font-weight: 600; font-size: 28px; line-height: 1; color: var(--color-neutral-700);">IEEE Xplore</span>
-            <span class="card-kicker" style="color: var(--color-neutral-700); font-size: 11px; margin-top: 4px;">2023</span>
-          </div>
-          <h3 class="card-title" style="font-size: 21px; margin: 0;">Machine Learning Approach for Prediction of Ammonia in Freshwater Bodies</h3>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" data-screen-label="Skills" style="padding: 72px 0 64px; display: grid; gap: 36px; border-bottom: 1px solid var(--color-divider); scroll-margin-top: 60px;">
-      <div style="display: flex; align-items: end; gap: 20px; flex-wrap: wrap;">
-        <span style="font-family: var(--font-heading); font-size: 64px; line-height: 0.9; color: var(--color-accent);">03</span>
-        <h2 style="margin: 0; font-size: 36px; text-transform: uppercase;">Skills and tools</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); border-top: 1px solid var(--color-divider); border-left: 1px solid var(--color-divider);">
-        <div style="padding: 22px; display: grid; align-content: start; gap: 14px; border-right: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">
-          <h3 style="margin: 0; font-size: 22px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-accent-700);">Generative AI and LLMs</h3>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <span class="tag tag-accent" style="font-size: 13px;">Supervised fine-tuning</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Preference optimization</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Diffusion models</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Autoregressive transformers</span>
-            <span class="tag tag-accent" style="font-size: 13px;">LangChain</span>
-            <span class="tag tag-outline" style="font-size: 13px; color: var(--color-accent-700);">RAG (familiar)</span>
-          </div>
+  <section class="block" id="skills">
+    <div class="wrap">
+      <h2>Skills and tools</h2>
+      <div class="skills">
+        <div class="skill">
+          <h3>Generative AI and LLMs</h3>
+          <p>Supervised fine-tuning, Preference optimization, Diffusion models, Autoregressive transformers, LangChain, RAG (familiar)</p>
         </div>
-        <div style="padding: 22px; display: grid; align-content: start; gap: 14px; border-right: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">
-          <h3 style="margin: 0; font-size: 22px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-accent-700);">Model development</h3>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <span class="tag tag-accent" style="font-size: 13px;">Graph neural networks</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Ranking and learning-to-rank</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Top-ranked candidate selection</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Low-data learning</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Experiment design and benchmarking</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Multimodal data curation</span>
-          </div>
+        <div class="skill">
+          <h3>Model development</h3>
+          <p>Graph neural networks, Ranking and learning-to-rank, Top-ranked candidate selection, Low-data learning, Experiment design and benchmarking, Multimodal data curation</p>
         </div>
-        <div style="padding: 22px; display: grid; align-content: start; gap: 14px; border-right: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">
-          <h3 style="margin: 0; font-size: 22px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-accent-700);">ML frameworks</h3>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <span class="tag tag-accent" style="font-size: 13px;">PyTorch</span>
-            <span class="tag tag-accent" style="font-size: 13px;">PyTorch Geometric</span>
-            <span class="tag tag-outline" style="font-size: 13px; color: var(--color-accent-700);">JAX (familiar)</span>
-          </div>
+        <div class="skill">
+          <h3>ML frameworks</h3>
+          <p>PyTorch, PyTorch Geometric, JAX (familiar)</p>
         </div>
-        <div style="padding: 22px; display: grid; align-content: start; gap: 14px; border-right: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">
-          <h3 style="margin: 0; font-size: 22px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-accent-700);">AI for science</h3>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <span class="tag tag-accent" style="font-size: 13px;">AlphaFold 3</span>
-            <span class="tag tag-accent" style="font-size: 13px;">ColabFold</span>
-            <span class="tag tag-accent" style="font-size: 13px;">ProteinMPNN</span>
-            <span class="tag tag-accent" style="font-size: 13px;">LigandMPNN</span>
-            <span class="tag tag-accent" style="font-size: 13px;">ESM-IF</span>
-            <span class="tag tag-accent" style="font-size: 13px;">ADFLIP</span>
-            <span class="tag tag-accent" style="font-size: 13px;">RFdiffusion</span>
-            <span class="tag tag-accent" style="font-size: 13px;">ESM</span>
-            <span class="tag tag-accent" style="font-size: 13px;">SIFT and SIFT4G</span>
-            <span class="tag tag-accent" style="font-size: 13px;">PyMOL</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Chimera</span>
-          </div>
+        <div class="skill">
+          <h3>AI for science</h3>
+          <p>AlphaFold 3, ColabFold, ProteinMPNN, LigandMPNN, ESM-IF, ADFLIP, RFdiffusion, ESM, SIFT and SIFT4G, PyMOL, Chimera</p>
         </div>
-        <div style="padding: 22px; display: grid; align-content: start; gap: 14px; border-right: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">
-          <h3 style="margin: 0; font-size: 22px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-accent-700);">Software and Systems</h3>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <span class="tag tag-accent" style="font-size: 13px;">Python</span>
-            <span class="tag tag-accent" style="font-size: 13px;">C++</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Embedded C</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Linux and Bash</span>
-            <span class="tag tag-accent" style="font-size: 13px;">HPC and GPU</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Git</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Docker</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Flask</span>
-            <span class="tag tag-accent" style="font-size: 13px;">Streamlit</span>
-          </div>
+        <div class="skill">
+          <h3>Software and Systems</h3>
+          <p>Python, C++, Embedded C, Linux and Bash, HPC and GPU, Git, Docker, Flask, Streamlit</p>
         </div>
       </div>
-    </section>
-
-    <section id="education" data-screen-label="Education" style="padding: 72px 0 72px; display: grid; gap: 36px; scroll-margin-top: 60px;">
-      <div style="display: flex; align-items: end; gap: 20px; flex-wrap: wrap;">
-        <span style="font-family: var(--font-heading); font-size: 64px; line-height: 0.9; color: var(--color-accent);">04</span>
-        <h2 style="margin: 0; font-size: 36px; text-transform: uppercase;">Education</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 28px;">
-        <div class="card blueprint" style="padding: 24px; gap: 10px;">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <span style="font-family: var(--font-heading); font-size: 20px; color: var(--color-accent-700); letter-spacing: 0.04em;">2024 to 2025</span>
-          <h3 style="margin: 0; font-size: 24px;">MSc, Computer and Communication Engineering</h3>
-          <p style="margin: 0; font-size: 15px; color: var(--color-neutral-800);">Nanyang Technological University.</p>
-          <div style="display: flex;"><span class="tag" style="background: var(--color-accent); color: var(--color-bg); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;">EEE Excellence Award</span></div>
-        </div>
-        <div class="card blueprint" style="padding: 24px; gap: 10px;">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <span style="font-family: var(--font-heading); font-size: 20px; color: var(--color-accent-700); letter-spacing: 0.04em;">2017 to 2021</span>
-          <h3 style="margin: 0; font-size: 24px;">BTech, Electronics and Communication Engineering</h3>
-          <p style="margin: 0; font-size: 15px; color: var(--color-neutral-800);">Manipal Institute of Technology, MAHE. Specialization in Machine Learning and Data Science.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer style="margin-top: auto; background: var(--color-accent-900); color: var(--color-accent-300);">
-    <div style="max-width: 1120px; margin: 0 auto; padding: 20px 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">
-      <span>Nilufer Tamatgar</span>
-      <span>Last updated October 2026</span>
     </div>
-  </footer>
-</div>
+  </section>
+
+  <section class="block alt" id="education">
+    <div class="wrap">
+      <h2>Education</h2>
+      <div class="edu">
+        <div class="edu-item">
+          <div class="years">2024 to 2025</div>
+          <div>
+            <h3>MSc, Computer and Communication Engineering</h3>
+            <p>Nanyang Technological University. EEE Excellence Award.</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="years">2017 to 2021</div>
+          <div>
+            <h3>BTech, Electronics and Communication Engineering</h3>
+            <p>Manipal Institute of Technology, MAHE. Specialization in Machine Learning and Data Science.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nilufer Tamatgar</span>
+    <span>Last updated October 2026</span>
+  </div>
+</footer>
+
 </body>
 </html>
